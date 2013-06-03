@@ -19,7 +19,7 @@ interface POSInterface {
     /**
      * Sipariş ayarları
      *
-     * @param decimal $miktar
+     * @param float $miktar
      * @param string $siparisID
      * @return void
      */

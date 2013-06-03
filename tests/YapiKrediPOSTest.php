@@ -22,7 +22,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testGecersizKrediKarti() 
     {
         $this->pos->krediKartiAyarlari('GECERSIZKREDIKARTI', '1013', '123');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         $this->assertFalse($this->pos->dogrula());
     }
@@ -30,7 +30,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testGecersizSonKullanmaTarihiFormati() 
     {
         $this->pos->krediKartiAyarlari('5431111111111111', '10211', '123');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         $this->assertFalse($this->pos->dogrula());
     }
@@ -38,7 +38,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testSonKullanmaTarihiGecersizAy() 
     {
         $this->pos->krediKartiAyarlari('5431111111111111', '1314', '123');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         $this->assertFalse($this->pos->dogrula());
     }
@@ -46,7 +46,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testGecmisSonKullanmaTarihi() 
     {
         $this->pos->krediKartiAyarlari('5431111111111111', '1012', '123');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         $this->assertFalse($this->pos->dogrula());
     }
@@ -54,7 +54,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testGecersizCCV() 
     {
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '1234');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         $this->assertFalse($this->pos->dogrula());
     }
@@ -62,7 +62,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testSifirHarcama() 
     {
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
-        $this->pos->siparisAyarlari(0.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(0.00, 'SIPARISID', 1);
 
         $this->assertFalse($this->pos->dogrula());
     }
@@ -70,7 +70,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     public function testGecerliSiparisDogrulama() 
     {
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         $this->assertTrue($this->pos->dogrula());
     }
@@ -96,7 +96,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
         $this->pos = new YapiKrediPOS($posnet, 'MUSTERIID', 'TERMINALID', 'test');
 
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
-        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         // Döngü türü kontrolü
         $this->assertInstanceOf('YapiKrediPOSSonuc', $this->pos->odeme());

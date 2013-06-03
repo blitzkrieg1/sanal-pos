@@ -77,7 +77,7 @@ class YapiKrediPOS implements POSInterface {
     /**
      * Sipariş ayarlarını belirle
      *
-     * @param decimal $tutar
+     * @param float $tutar
      * @param string $siparisID
      * @return void
      */
