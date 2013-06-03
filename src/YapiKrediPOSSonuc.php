@@ -5,25 +5,37 @@
  */
 class YapiKrediPOSSonuc implements POSSonuc
 {
-    public $rawDongu;
+    public $posnet;
 
-    public function __construct($rawDongu)
+    /**
+     * Verileri RAW nesnesi olarak tutmaktansa
+     * Posnet nesnesi daha kullanışlı
+     *
+     * @param Posnet
+     * @return void
+     */
+    public function __construct(Posnet $posnet)
     {
-        $this->rawDongu = $rawDongu;
+        $this->posnet = $posnet;
     }
 
     public function basariliMi()
     {
-
+        return $this->posnet->GetApprovedCode() === '1';
     }
 
     public function hataMesajlari()
     {
-        
+        return array(
+                array(
+                    'kod'   => $this->posnet->GetResponseCode(),
+                    'mesaj' => $this->posnet->GetResponseText()
+                )
+            );
     }
 
     public function raw()
     {
-        return $this->rawDongu;
+        return $this->posnet->GetResponseXMLData();
     }
 }

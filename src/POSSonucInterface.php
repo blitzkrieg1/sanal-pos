@@ -4,14 +4,6 @@
  * Bankadan gelen döngüler
  */
 interface POSSonuc {
-    /** 
-     * Bankadan gelen döngü RAW olarak verilecek
-     *
-     * @param string $rawDongu
-     * @return void
-     */
-    public function __construct($rawDongu);
-
     /**
      * Sonuç başarılı mı değil mi
      *
