@@ -5,5 +5,8 @@
     },
     "require-dev": {
         "mockery/mockery": "dev-master@dev"
+    },
+    "autoload": {
+        "files": ["vendor/posnet/Posnet XML/posnet.php"]
     }
 }
