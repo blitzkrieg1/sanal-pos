@@ -28,7 +28,7 @@ class YapiKrediPOS implements POSInterface
     /** 
      * Sipariş bilgileri
      */
-    protected $miktar;
+    protected $tutar;
     protected $siparisID;
 
     public function __construct(Posnet $posnet, $musteriID, $terminalID, $environment = 'production')
@@ -49,9 +49,9 @@ class YapiKrediPOS implements POSInterface
         $this->cvc               = $cvc;
     }
 
-    public function siparisAyarlari($miktar, $siparisID)
+    public function siparisAyarlari($tutar, $siparisID)
     {
-        $this->miktar    = $miktar;
+        $this->tutar     = $tutar;
         $this->siparisID = $siparisID;
     }
 
@@ -62,7 +62,34 @@ class YapiKrediPOS implements POSInterface
 
     public function odeme()
     {
-        
+        // Kontrol yapmadan deneme yapan olabilir
+        if ( ! $this->dogrula())
+            throw new \InvalidArgumentException;
+
+        // Bankaya post edilecek veriler
+        $islemTuru = 'auth';
+        $taksit    = '00';
+        $kur       = 'YT';
+
+        // İşlem tutarını düzenle
+        $tutar = number_format($this->tutar, 2, '', '');
+
+        $this->posnet->UseOpenssl();
+        $this->posnet->SetURL($this->host);
+        $this->posnet->SetMid($this->musteriID);
+        $this->posnet->SetTid($this->terminalID);
+        $this->posnet->DoAuthTran(
+            $this->kartNo,
+            $this->sonKullanmaTarihi,
+            $this->cvc,
+            $this->siparisID,
+            $tutar,
+            $kur,
+            $taksit
+        );
+
+        // Sonuç nesnesini oluştur
+        return new \YapiKrediPOSSonuc($this->posnet);
     }
 
     protected function krediKartiKontrolleri()
@@ -103,12 +130,12 @@ class YapiKrediPOS implements POSInterface
 
     protected function siparisKontrolleri()
     {
-        return $this->miktarKontrolleri() and $this->siparisIDKontrolleri();
+        return $this->tutarKontrolleri() and $this->siparisIDKontrolleri();
     }
 
-    protected function miktarKontrolleri()
+    protected function tutarKontrolleri()
     {
-        return is_numeric($this->miktar) and $this->miktar > 0;
+        return is_numeric($this->tutar) and $this->tutar > 0;
     }
 
     protected function siparisIDKontrolleri()

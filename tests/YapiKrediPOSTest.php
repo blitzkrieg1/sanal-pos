@@ -14,6 +14,11 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
         $this->pos = new YapiKrediPOS($posnet, 'MUSTERIID', 'TERMINALID', 'test');
     }
 
+     public function tearDown()
+    {
+        \Mockery::close();
+    }
+
     public function testGecersizKrediKarti() 
     {
         $this->pos->krediKartiAyarlari('GECERSIZKREDIKARTI', '1013', '123');
@@ -68,5 +73,34 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
         $this->pos->siparisAyarlari(10.00, 'SIPARISID');
 
         $this->assertTrue($this->pos->dogrula());
+    }
+
+    /** 
+     * @expectedException InvalidArgumentException
+     */
+    public function testDogrulamadanOdemeDenemesi() 
+    {
+        $this->pos->odeme();
+    }
+
+    public function testAuthOdeme() 
+    {
+        // Özel mock
+        $posnet = \Mockery::mock('Posnet');
+        $posnet->shouldReceive('UseOpenssl')->once()->andReturn('1');
+        $posnet->shouldReceive('SetURL')->once()->andReturn('1');
+        $posnet->shouldReceive('SetMid')->once()->andReturn('1');
+        $posnet->shouldReceive('SetTid')->once()->andReturn('1');
+        $posnet->shouldReceive('DoAuthTran')->once()->andReturn('1');
+
+        $this->pos = new YapiKrediPOS($posnet, 'MUSTERIID', 'TERMINALID', 'test');
+
+        $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
+        $this->pos->siparisAyarlari(10.00, 'SIPARISID');
+
+        // Döngü türü kontrolü
+        $this->assertInstanceOf('YapiKrediPOSSonuc', $this->pos->odeme());
+        // Döngü mesajı kontrolü
+        $this->assertEquals('', $this->pos->);
     }
 }
