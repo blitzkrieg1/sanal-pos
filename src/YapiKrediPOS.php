@@ -29,6 +29,7 @@ class YapiKrediPOS implements POSInterface {
      */
     protected $tutar;
     protected $siparisID;
+    protected $taksit;
 
     /**
      * Bağlantı ayarları
@@ -80,10 +81,11 @@ class YapiKrediPOS implements POSInterface {
      * @param string $siparisID
      * @return void
      */
-    public function siparisAyarlari($tutar, $siparisID)
+    public function siparisAyarlari($tutar, $siparisID, $taksit)
     {
         $this->tutar     = $tutar;
         $this->siparisID = $siparisID;
+        $this->taksit    = $taksit;
     }
 
     /**
@@ -120,7 +122,6 @@ class YapiKrediPOS implements POSInterface {
 
         // Bankaya post edilecek veriler
         $islemTuru = 'auth';
-        $taksit    = '00';
         $kur       = 'YT';
 
         // İşlem tutarını düzenle
@@ -137,7 +138,7 @@ class YapiKrediPOS implements POSInterface {
             $this->siparisID,
             $tutar,
             $kur,
-            $taksit
+            $this->taksit
         );
 
         // Sonuç nesnesini oluştur
