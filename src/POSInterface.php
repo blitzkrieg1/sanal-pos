@@ -7,6 +7,25 @@
  */
 interface POSInterface
 {
+    /**
+     * Kredi kartı ayarları
+     *
+     * @param integer $kartNo
+     * @param integer $sonKullanmaTarihi (MMYY)
+     * @param integer $cvc
+     * @return void
+     */
+    public function krediKartiAyarlari($kartNo, $sonKullanmaTarihi, $cvc);
+
+    /**
+     * Sipariş ayarları
+     *
+     * @param decimal $miktar
+     * @param string $siparisID
+     * @return void
+     */
+    public function siparisAyarlari($miktar, $siparisID);
+
     /** 
      * Girilen kredi kartı gibi verilerin bankaya göndermeden önce doğrulaması
      * 
