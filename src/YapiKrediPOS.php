@@ -31,6 +31,13 @@ class YapiKrediPOS implements POSInterface
     protected $tutar;
     protected $siparisID;
 
+    /**
+     * Bağlantı ayarları
+     */
+    public $baglantiAyarlari = array(
+            'timeOut' => 30
+        );
+
     public function __construct(Posnet $posnet, $musteriID, $terminalID, $environment = 'production')
     {
         // Posnet injection
@@ -53,6 +60,11 @@ class YapiKrediPOS implements POSInterface
     {
         $this->tutar     = $tutar;
         $this->siparisID = $siparisID;
+    }
+
+    public function baglantiAyarlari($yeniAyarlar)
+    {
+        $this->baglantiAyarlari = array_merge($this->baglantiAyarlari, $yeniAyarlar);
     }
 
     public function dogrula()
@@ -142,4 +154,5 @@ class YapiKrediPOS implements POSInterface
     {
         return ! empty($this->siparisID);
     }
+
 }

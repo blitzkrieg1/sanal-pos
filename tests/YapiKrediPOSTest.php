@@ -101,6 +101,13 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
         // Döngü türü kontrolü
         $this->assertInstanceOf('YapiKrediPOSSonuc', $this->pos->odeme());
         // Döngü mesajı kontrolü
-        $this->assertEquals('', $this->pos->);
+        // $this->assertEquals('', $this->pos->);
+    }
+
+    public function testBaglantiAyarlariDegistirme()
+    {
+        $yeniAyarlar = array('timeOut' => 10, 'ip' => 'xx.xx.xx.xx');
+        $this->pos->baglantiAyarlari($yeniAyarlar);
+        $this->assertEquals($yeniAyarlar, $this->pos->baglantiAyarlari);
     }
 }
