@@ -3,8 +3,7 @@
 /**
  * POSSonuc interfacei ile Yapı Kredi POS döngüleri 
  */
-class YapiKrediPOSSonuc implements POSSonuc
-{
+class YapiKrediPOSSonuc implements POSSonuc {
     public $posnet;
 
     /**

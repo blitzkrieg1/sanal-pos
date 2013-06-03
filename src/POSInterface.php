@@ -5,8 +5,7 @@
  *
  * Bundan sonra yazacağım POS'lara kalıp olması açısından bu projede dahil ediyorum. 
  */
-interface POSInterface
-{
+interface POSInterface {
     /**
      * Kredi kartı ayarları
      *

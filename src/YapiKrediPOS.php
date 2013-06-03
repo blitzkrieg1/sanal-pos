@@ -3,8 +3,7 @@
 /**
  * Yapı Kredi için sanal POS
  */
-class YapiKrediPOS implements POSInterface
-{
+class YapiKrediPOS implements POSInterface {
     protected $posnet;
 
     /**
