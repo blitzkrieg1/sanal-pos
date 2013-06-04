@@ -127,7 +127,6 @@ class YapiKrediPOS implements POSInterface {
         // İşlem tutarını düzenle
         $tutar = number_format($this->tutar, 2, '', '');
 
-        $this->posnet->UseOpenssl();
         $this->posnet->SetURL($this->host);
         $this->posnet->SetMid($this->musteriID);
         $this->posnet->SetTid($this->terminalID);
