@@ -87,7 +87,6 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
     {
         // Özel mock
         $posnet = \Mockery::mock('Posnet');
-        $posnet->shouldReceive('UseOpenssl')->once()->andReturn('1');
         $posnet->shouldReceive('SetURL')->once()->andReturn('1');
         $posnet->shouldReceive('SetMid')->once()->andReturn('1');
         $posnet->shouldReceive('SetTid')->once()->andReturn('1');
