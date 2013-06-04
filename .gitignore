@@ -1,6 +1,4 @@
-/vendor/composer
-/vendor/mockery
-/vendor/ozgur
-/vendor/autoload.php
+vendor/*
+!vendor/posnet
 composer.phar
 composer.lock
