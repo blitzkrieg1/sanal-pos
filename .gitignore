@@ -1,5 +1,6 @@
 /vendor/composer
 /vendor/mockery
+/vendor/ozgur
 /vendor/autoload.php
 composer.phar
 composer.lock
