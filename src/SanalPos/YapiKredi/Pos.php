@@ -1,9 +1,11 @@
-<?php
+<?php namespace SanalPos\YapiKredi;
+
+use \Posnet;
 
 /**
  * Yapı Kredi için sanal POS
  */
-class YapiKrediPOS implements POSInterface {
+class Pos implements \SanalPos\PosInterface {
     protected $posnet;
 
     /**
@@ -112,7 +114,7 @@ class YapiKrediPOS implements POSInterface {
     /**
      * Ayarları yapılan ödemeyi gerçekleştir
      *
-     * @return YapiKrediPOSSonuc
+     * @return PosSonucInterface
      */
     public function odeme()
     {
@@ -141,7 +143,7 @@ class YapiKrediPOS implements POSInterface {
         );
 
         // Sonuç nesnesini oluştur
-        return new \YapiKrediPOSSonuc($this->posnet);
+        return new Sonuc($this->posnet);
     }
 
     /**

@@ -1,9 +1,9 @@
-<?php
+<?php namespace SanalPos\Est;
 
 /**
  * EST için sanal POS
  */
-class EstPOS implements POSInterface {
+class Pos implements \SanalPos\PosInterface {
     protected $est;
 
     /**
@@ -31,7 +31,7 @@ class EstPOS implements POSInterface {
      * @param string $environment
      * @return void
      */
-    public function __construct(Est $est)
+    public function __construct(\Est $est)
     {
         // Est injection
         $this->est = $est;
@@ -79,7 +79,7 @@ class EstPOS implements POSInterface {
     /**
      * Ayarları yapılan ödemeyi gerçekleştir
      *
-     * @return EstPOSSonuc
+     * @return PosSonucInterface
      */
     public function odeme()
     {
@@ -95,7 +95,7 @@ class EstPOS implements POSInterface {
         $sonuc = $this->est->pay($this->kartNo, $this->cvc, $sktAy, $sktYil, $tutar, $this->taksit, $this->siparisID);
 
         // Sonuç nesnesini oluştur
-        return new \EstPOSSonuc($sonuc);
+        return new Sonuc($sonuc);
     }
 
     /**

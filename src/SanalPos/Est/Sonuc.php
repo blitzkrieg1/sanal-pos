@@ -1,9 +1,9 @@
-<?php
+<?php namespace SanalPos\Est;
 
 /**
  * POSSonuc interfacei ile Yapı Kredi POS döngüleri 
  */
-class EstPOSSonuc implements POSSonuc {
+class Sonuc implements \SanalPos\PosSonucInterface {
     public $estDongu;
 
     /**

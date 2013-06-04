@@ -1,9 +1,9 @@
-<?php
+<?php namespace SanalPosTest\Est;
 
 /**
  * Est POS testleri 
  */
-class EstPOSTest extends PHPUnit_Framework_TestCase {
+class PosTest extends \PHPUnit_Framework_TestCase {
     protected $pos;
 
     public function setUp() 
@@ -11,7 +11,7 @@ class EstPOSTest extends PHPUnit_Framework_TestCase {
         // Est mock
         $est = \Mockery::mock('Est');
 
-        $this->pos = new EstPOS($est, 'ISYERIID', 'KULLANICI', 'PAROLA', 'test');
+        $this->pos = new \SanalPos\Est\Pos($est, 'ISYERIID', 'KULLANICI', 'PAROLA', 'test');
     }
 
      public function tearDown()
@@ -112,14 +112,14 @@ class EstPOSTest extends PHPUnit_Framework_TestCase {
         $est = \Mockery::mock('est');
         $est->shouldReceive('pay')->once()->andReturn($ornekBasarisizSonuc);
 
-        $this->pos = new EstPOS($est, 'ISYERIID', 'KULLANICI', 'PAROLA', 'test');
+        $this->pos = new \SanalPos\Est\Pos($est, 'ISYERIID', 'KULLANICI', 'PAROLA', 'test');
 
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
         $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         // Döngü türü kontrolü
         $sonuc = $this->pos->odeme();
-        $this->assertInstanceOf('EstPOSSonuc', $sonuc);
+        $this->assertInstanceOf('SanalPos\Est\Sonuc', $sonuc);
         $this->assertFalse($sonuc->basariliMi());
     }
 
@@ -152,14 +152,14 @@ class EstPOSTest extends PHPUnit_Framework_TestCase {
         $est = \Mockery::mock('est');
         $est->shouldReceive('pay')->once()->andReturn($ornekBasariliSonuc);
 
-        $this->pos = new EstPOS($est, 'ISYERIID', 'KULLANICI', 'PAROLA', 'test');
+        $this->pos = new \SanalPos\Est\Pos($est, 'ISYERIID', 'KULLANICI', 'PAROLA', 'test');
 
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
         $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         // Döngü türü kontrolü
         $sonuc = $this->pos->odeme();
-        $this->assertInstanceOf('EstPOSSonuc', $sonuc);
+        $this->assertInstanceOf('SanalPos\Est\Sonuc', $sonuc);
         $this->assertTrue($sonuc->basariliMi());
     }
 

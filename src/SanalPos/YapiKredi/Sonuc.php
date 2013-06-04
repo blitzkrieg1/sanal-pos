@@ -1,9 +1,11 @@
-<?php
+<?php namespace SanalPos\YapiKredi;
+
+use \Posnet;
 
 /**
  * POSSonuc interfacei ile Yapı Kredi POS döngüleri 
  */
-class YapiKrediPOSSonuc implements POSSonuc {
+class Sonuc implements \SanalPos\PosSonucInterface {
     public $posnet;
 
     /**

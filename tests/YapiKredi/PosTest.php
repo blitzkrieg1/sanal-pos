@@ -1,9 +1,9 @@
-<?php
+<?php namespace SanalPosTest\YapiKredi;
 
 /**
  * Yapı Kredi POS testleri 
  */
-class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
+class PosTest extends \PHPUnit_Framework_TestCase {
     protected $pos;
 
     public function setUp() 
@@ -11,7 +11,7 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
         // POS Net mock
         $posnet = \Mockery::mock('Posnet');
 
-        $this->pos = new YapiKrediPOS($posnet, 'MUSTERIID', 'TERMINALID', 'test');
+        $this->pos = new \SanalPos\YapiKredi\Pos($posnet, 'MUSTERIID', 'TERMINALID', 'test');
     }
 
      public function tearDown()
@@ -92,13 +92,13 @@ class YapiKrediPOSTest extends PHPUnit_Framework_TestCase {
         $posnet->shouldReceive('SetTid')->once()->andReturn('1');
         $posnet->shouldReceive('DoAuthTran')->once()->andReturn('1');
 
-        $this->pos = new YapiKrediPOS($posnet, 'MUSTERIID', 'TERMINALID', 'test');
+        $this->pos = new \SanalPos\YapiKredi\Pos($posnet, 'MUSTERIID', 'TERMINALID', 'test');
 
         $this->pos->krediKartiAyarlari('5431111111111111', '1013', '123');
         $this->pos->siparisAyarlari(10.00, 'SIPARISID', 1);
 
         // Döngü türü kontrolü
-        $this->assertInstanceOf('YapiKrediPOSSonuc', $this->pos->odeme());
+        $this->assertInstanceOf('SanalPos\YapiKredi\Sonuc', $this->pos->odeme());
         // Döngü mesajı kontrolü
         // $this->assertEquals('', $this->pos->);
     }

@@ -1,11 +1,11 @@
-<?php
+<?php namespace SanalPos;
 
 /**
  * Sanal POS Interface
  *
  * Bundan sonra yazacağım POS'lara kalıp olması açısından bu projede dahil ediyorum. 
  */
-interface POSInterface {
+interface PosInterface {
     /**
      * Kredi kartı ayarları
      *

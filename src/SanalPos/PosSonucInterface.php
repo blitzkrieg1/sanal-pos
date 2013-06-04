@@ -1,9 +1,9 @@
-<?php
+<?php namespace SanalPos;
 
 /**
  * Bankadan gelen döngüler
  */
-interface POSSonuc {
+interface PosSonucInterface {
     /**
      * Sonuç başarılı mı değil mi
      *

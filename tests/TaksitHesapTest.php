@@ -5,7 +5,7 @@ class TaksitHesapTest extends PHPUnit_Framework_TestCase {
 
     public function setUp()
     {
-        $this->taksitHesap = new TaksitHesap([
+        $this->taksitHesap = new \SanalPos\TaksitHesap([
                 1 => 0,
                 2 => 5,
                 3 => 0,

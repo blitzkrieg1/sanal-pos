@@ -1,4 +1,4 @@
-<?php
+<?php namespace SanalPos;
 
 /**
  * Verilen vade farklarıyla taksit oranını hesaplamak

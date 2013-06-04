@@ -8,6 +8,7 @@
         "mockery/mockery": "dev-master@dev"
     },
     "autoload": {
-        "files": ["vendor/posnet/Posnet XML/posnet.php"]
+        "files": ["vendor/posnet/Posnet XML/posnet.php"],
+        "psr-0": {"SanalPos": "src/"}
     }
 }
