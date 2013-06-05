@@ -129,12 +129,16 @@ class Pos implements \SanalPos\PosInterface {
         // İşlem tutarını düzenle
         $tutar = number_format($this->tutar, 2, '', '');
 
+        // Son kullanma tarihi formatı
+        $sktAy  = substr($this->sonKullanmaTarihi, 0, 2);
+        $sktYil = substr($this->sonKullanmaTarihi, 2, 2);
+
         $this->posnet->SetURL($this->host);
         $this->posnet->SetMid($this->musteriID);
         $this->posnet->SetTid($this->terminalID);
         $this->posnet->DoAuthTran(
             $this->kartNo,
-            $this->sonKullanmaTarihi,
+            $sktYil . $sktAy,
             $this->cvc,
             $this->siparisID,
             $tutar,
