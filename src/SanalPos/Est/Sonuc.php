@@ -19,7 +19,7 @@ class Sonuc implements \SanalPos\PosSonucInterface {
 
     public function basariliMi()
     {
-        return intval($this->estDongu['return_code']) == 0;
+        return intval($this->estDongu['return_code']) == 0 and ! empty($this->estDongu['orderid']);
     }
 
     public function hataMesajlari()
@@ -34,6 +34,6 @@ class Sonuc implements \SanalPos\PosSonucInterface {
 
     public function raw()
     {
-        return $this->estDongu;
+        return json_encode($this->estDongu);
     }
 }
