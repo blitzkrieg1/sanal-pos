@@ -123,8 +123,7 @@ class Pos implements \SanalPos\PosInterface {
             throw new \InvalidArgumentException;
 
         // Bankaya post edilecek veriler
-        $islemTuru = 'auth';
-        $kur       = 'YT';
+        $kur = 'YT';
 
         // İşlem tutarını düzenle
         $tutar = number_format($this->tutar, 2, '', '');
@@ -136,7 +135,7 @@ class Pos implements \SanalPos\PosInterface {
         $this->posnet->SetURL($this->host);
         $this->posnet->SetMid($this->musteriID);
         $this->posnet->SetTid($this->terminalID);
-        $this->posnet->DoAuthTran(
+        $this->posnet->DoSaleTran(
             $this->kartNo,
             $sktYil . $sktAy,
             $this->cvc,
