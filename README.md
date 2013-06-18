@@ -14,6 +14,6 @@ Composer ile sisteminize rahatlıkla ekleyebilirsiniz. Örnek composer.json
 
     {
         "require": {
-            "ekrembk/sanal-pos"
+            "ekrembk/sanal-pos": "dev-master"
         }
     }
