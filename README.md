@@ -13,5 +13,7 @@ Kurulum
 Composer ile sisteminize rahatlıkla ekleyebilirsiniz. Örnek composer.json
 
     {
-        "require": "ekrembk/sanal-pos"
+        "require": {
+            "ekrembk/sanal-pos"
+        }
     }
